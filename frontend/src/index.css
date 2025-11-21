@@ -1,0 +1,460 @@
+/* Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Amiri&family=Poppins:wght@300;400;600&display=swap");
+
+/* ---------------------------------------
+   GLOBAL THEME VARIABLES (DARK DEFAULT)
+---------------------------------------- */
+:root {
+  --bg: #0d0b16;
+  --bg-soft: #1a1625;
+  --gold: #f2c14e;
+  --gold-soft: #f9dd8a;
+  --danger: #e74c3c;
+  --success: #2ecc71;
+  --text: #f0e6d2;
+  --text-muted: #b9af9e;
+  --accent: #8e44ad;
+}
+
+/* Light mode overrides (applied via body.light-mode) */
+body.light-mode {
+  --bg: #f7f4ea;
+  --bg-soft: #ffffff;
+  --text: #1f2933;
+  --text-muted: #6b7280;
+  --accent: #8e44ad;
+}
+
+/* ---------------------------------------
+   BODY & GLOBAL
+---------------------------------------- */
+body {
+  margin: 0;
+  padding: 0;
+  background: radial-gradient(circle at top, #1f2937 0%, #020617 55%, #000 100%);
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: "Poppins", "Amiri", system-ui, sans-serif;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Animated starry / firefly background */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background-image:
+    radial-gradient(2px 2px at 20% 20%, rgba(242, 193, 78, 0.6), transparent 40%),
+    radial-gradient(1.5px 1.5px at 80% 30%, rgba(248, 250, 252, 0.9), transparent 45%),
+    radial-gradient(2px 2px at 10% 80%, rgba(242, 193, 78, 0.8), transparent 45%),
+    radial-gradient(1.5px 1.5px at 50% 50%, rgba(255, 255, 255, 0.6), transparent 40%);
+  opacity: 0.18;
+  pointer-events: none;
+  animation: drift 50s linear infinite;
+}
+
+body::after {
+  animation-duration: 90s;
+  opacity: 0.11;
+}
+
+@keyframes drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(10%, 10%, 0);
+  }
+}
+
+/* ---------------------------------------
+   APP ROOT
+---------------------------------------- */
+.app-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-root.rtl-mode {
+  font-family: "Amiri", serif;
+}
+
+.app-main {
+  flex: 1;
+  padding: 20px;
+}
+
+/* Fade animation */
+.fade-in {
+  animation: fade 0.4s ease-in-out;
+}
+
+@keyframes fade {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Screen layout */
+.screen {
+  max-width: 900px;
+  margin: 40px auto;
+}
+
+/* ---------------------------------------
+   NAVBAR
+---------------------------------------- */
+.navbar {
+  background: #140f1f;
+  border-bottom: 1px solid rgba(255, 215, 0, 0.15);
+  padding: 14px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.navbar-logo {
+  font-size: 32px;
+  margin-right: 14px;
+}
+
+.navbar-title {
+  font-size: 20px;
+  color: var(--gold);
+  margin: 0;
+}
+
+.navbar-subtitle {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.navbar-right {
+  display: flex;
+  gap: 8px;
+}
+
+/* ---------------------------------------
+   HERO / HOME
+---------------------------------------- */
+.hero-card {
+  max-width: 600px;
+  margin: 80px auto;
+  background: var(--bg-soft);
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 0 25px rgba(242, 193, 78, 0.18);
+  text-align: center;
+}
+
+.hero-title {
+  font-size: 28px;
+  color: var(--gold);
+}
+
+.hero-text {
+  color: var(--text-muted);
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+
+.hero-meta {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.hero-meta span {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 6px 12px;
+  border-radius: 10px;
+  font-size: 13px;
+}
+
+/* ---------------------------------------
+   BUTTONS
+---------------------------------------- */
+.btn {
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.btn.primary {
+  background: var(--gold);
+  color: #000;
+}
+
+.btn.primary:hover {
+  background: var(--gold-soft);
+}
+
+.btn.ghost {
+  background: transparent;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+}
+
+.btn.ghost:hover {
+  background: rgba(242, 193, 78, 0.1);
+}
+
+.btn.small {
+  padding: 6px 12px;
+  font-size: 14px;
+}
+
+/* ---------------------------------------
+   NAME MODAL
+---------------------------------------- */
+.name-modal-backdrop {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.74);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+}
+
+.name-modal {
+  background: var(--bg-soft);
+  padding: 26px;
+  border-radius: 14px;
+  box-shadow: 0 0 20px rgba(242, 193, 78, 0.4);
+  width: 90%;
+  max-width: 400px;
+}
+
+.name-modal-input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--gold);
+  background: #151021;
+  color: var(--text);
+}
+
+.name-modal-actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ---------------------------------------
+   QUIZ
+---------------------------------------- */
+.quiz-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.quiz-score-pill {
+  background: var(--accent);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.timer {
+  background: #2b1c40;
+  padding: 6px 12px;
+  border: 1px solid var(--gold);
+  border-radius: 10px;
+  font-size: 15px;
+  color: var(--gold);
+}
+
+.quiz-card {
+  background: var(--bg-soft);
+  padding: 25px;
+  border-radius: 16px;
+  margin-top: 25px;
+  box-shadow: 0 0 15px rgba(242, 193, 78, 0.15);
+}
+
+.quiz-question {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.quiz-meta {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.pill {
+  padding: 5px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  font-size: 12px;
+  color: var(--gold);
+}
+
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.quiz-option {
+  padding: 14px;
+  background: #16121f;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: 0.2s;
+}
+
+.quiz-option:hover {
+  border-color: var(--gold);
+}
+
+.quiz-option.correct {
+  border-color: var(--success);
+  background: rgba(46, 204, 113, 0.1);
+  color: var(--success);
+}
+
+.quiz-option.wrong {
+  border-color: var(--danger);
+  background: rgba(231, 76, 60, 0.1);
+  color: var(--danger);
+}
+
+/* Feedback text */
+.correct-msg {
+  margin-top: 15px;
+  color: var(--success);
+  font-weight: bold;
+}
+
+.wrong-msg {
+  margin-top: 15px;
+  color: var(--danger);
+  font-weight: bold;
+}
+
+/* ---------------------------------------
+   RESULT SCREEN
+---------------------------------------- */
+.result-card {
+  max-width: 550px;
+  margin: 40px auto;
+  background: var(--bg-soft);
+  padding: 25px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(242, 193, 78, 0.15);
+}
+
+.badge-pill {
+  display: inline-block;
+  background: var(--gold);
+  color: black;
+  padding: 8px 14px;
+  border-radius: 20px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+/* ---------------------------------------
+   REVIEW ANSWERS
+---------------------------------------- */
+.review-card {
+  background: var(--bg-soft);
+  padding: 18px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  border-left: 3px solid var(--gold);
+}
+
+.explanation {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+/* ---------------------------------------
+   LEADERBOARD
+---------------------------------------- */
+.leaderboard-card {
+  max-width: 700px;
+  margin: 30px auto;
+  background: var(--bg-soft);
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 0 20px rgba(242, 193, 78, 0.15);
+}
+
+.leaderboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.leaderboard-table {
+  width: 100%;
+  margin-top: 15px;
+  border-collapse: collapse;
+}
+
+.leaderboard-table th {
+  padding: 10px;
+  color: var(--gold);
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.leaderboard-table td {
+  padding: 10px;
+  color: var(--text-muted);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ---------------------------------------
+   LOADING ORB
+---------------------------------------- */
+.loader-orb {
+  width: 35px;
+  height: 35px;
+  border: 4px solid var(--gold);
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+  margin: auto;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ---------------------------------------
+   UTILITIES
+---------------------------------------- */
+.center {
+  text-align: center;
+  margin-top: 50px;
+}
