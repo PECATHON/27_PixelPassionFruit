@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const API_BASE = "https://arabian-nights-api.onrender.com";
-
+// ✅ UPDATED TO YOUR RAILWAY BACKEND
+const API_BASE = "https://pixelpassionfruit-production.up.railway.app";
 
 
 /* ----------------------------------------------
@@ -393,8 +393,8 @@ function ReviewScreen({ details, onHome, onLeaderboard }) {
           <p>
             Your Answer:{" "}
             {item.chosenIndex === item.correctIndex
-              ? "✅ Correct"
-              : "❌ Wrong"}
+              ? "âœ… Correct"
+              : "âŒ Wrong"}
           </p>
 
           <p>Correct Answer: {item.options[item.correctIndex]}</p>
