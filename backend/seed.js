@@ -11,7 +11,7 @@ const questions = [
     correctIndex: 0,
     explanation: "Scheherazade tells stories for 1001 nights to the king.",
     difficulty: "easy",
-    theme: "Arabian Nights"
+    theme: "Arabian Nights",
   },
   {
     question: "What magical object does Aladdin find?",
@@ -19,23 +19,25 @@ const questions = [
     correctIndex: 1,
     explanation: "Aladdin finds a magical lamp containing a genie.",
     difficulty: "easy",
-    theme: "Aladdin"
+    theme: "Aladdin",
   },
   {
     question: "Which phrase opens the thieves’ cave?",
     options: ["Open Sesame", "Open the Gate", "Open Magic", "Sesame Gate"],
     correctIndex: 0,
-    explanation: "'Open Sesame' opens the cave in Ali Baba and the Forty Thieves.",
+    explanation:
+      "'Open Sesame' opens the cave in Ali Baba and the Forty Thieves.",
     difficulty: "easy",
-    theme: "Ali Baba"
+    theme: "Ali Baba",
   },
   {
     question: "Who travels the seven voyages in Arabian Nights?",
     options: ["Sinbad", "Jafar", "Sultan Omar", "Badr Basim"],
     correctIndex: 0,
-    explanation: "Sinbad the Sailor explores the seas in seven legendary voyages.",
+    explanation:
+      "Sinbad the Sailor explores the seas in seven legendary voyages.",
     difficulty: "medium",
-    theme: "Sinbad"
+    theme: "Sinbad",
   },
   {
     question: "Who is the villain in the Aladdin story?",
@@ -43,7 +45,7 @@ const questions = [
     correctIndex: 0,
     explanation: "Jafar is the evil sorcerer who tries to steal the lamp.",
     difficulty: "easy",
-    theme: "Aladdin"
+    theme: "Aladdin",
   },
   {
     question: "What animal helps Ali Baba?",
@@ -51,7 +53,7 @@ const questions = [
     correctIndex: 0,
     explanation: "The slave girl Morgiana saves Ali Baba from the thieves.",
     difficulty: "medium",
-    theme: "Ali Baba"
+    theme: "Ali Baba",
   },
   {
     question: "What does the genie offer Aladdin?",
@@ -59,7 +61,7 @@ const questions = [
     correctIndex: 0,
     explanation: "The genie of the lamp grants Aladdin three wishes.",
     difficulty: "easy",
-    theme: "Aladdin"
+    theme: "Aladdin",
   },
   {
     question: "What do the 40 thieves store inside their cave?",
@@ -67,15 +69,16 @@ const questions = [
     correctIndex: 0,
     explanation: "The cave is filled with treasure looted by the thieves.",
     difficulty: "easy",
-    theme: "Ali Baba"
+    theme: "Ali Baba",
   },
   {
     question: "Which creature appears in Sinbad’s voyages?",
     options: ["Giant Roc bird", "Dragon", "Mermaid", "Phoenix"],
     correctIndex: 0,
-    explanation: "The Roc is a giant mythical bird in Sinbad's voyages.",
+    explanation:
+      "The Roc is a giant mythical bird in Sinbad's voyages.",
     difficulty: "medium",
-    theme: "Sinbad"
+    theme: "Sinbad",
   },
   {
     question: "Why does Scheherazade tell stories every night?",
@@ -83,20 +86,25 @@ const questions = [
       "To entertain the king",
       "To save her life",
       "To win a reward",
-      "To teach morals"
+      "To teach morals",
     ],
     correctIndex: 1,
     explanation: "She tells stories so the king will spare her each morning.",
     difficulty: "medium",
-    theme: "Arabian Nights"
-  }
+    theme: "Arabian Nights",
+  },
 ];
 
 async function seedDB() {
   try {
     console.log("Connecting to MongoDB...");
-    await mongoose.connect(process.env.MONGO_URI);
-    console.log("Connected.");
+    await mongoose.connect(process.env.MONGO_URI, {
+      ssl: true,
+      tlsAllowInvalidCertificates: true,
+      serverSelectionTimeoutMS: 10000,
+    });
+
+    console.log("Connected!");
 
     console.log("Clearing old questions...");
     await Quiz.deleteMany({});
@@ -107,7 +115,7 @@ async function seedDB() {
     console.log("Database seeded successfully!");
     process.exit(0);
   } catch (err) {
-    console.log(err);
+    console.error("❌ ERROR:", err);
     process.exit(1);
   }
 }
