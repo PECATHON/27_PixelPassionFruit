@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 // ✅ UPDATED TO YOUR RAILWAY BACKEND
-const API_BASE = "https://pixelpassionfruit-production.up.railway.app";
-
+const API_BASE = "https://pixelpassionfruit.onrender.com";
 
 /* ----------------------------------------------
    MAIN APP
